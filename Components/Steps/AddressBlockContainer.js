@@ -58,8 +58,6 @@ export function AddressBlockContainer({ route, navigation, items }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text>Picture block container</Text>
-
       <AddressBlock
         navigation={navigation}
         setAddress={setAddress}

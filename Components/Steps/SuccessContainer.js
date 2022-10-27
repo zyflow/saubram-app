@@ -15,47 +15,55 @@ export function SuccessContainer({ route, navigation, items }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={serviceItemStyle.title}>All done!</Text>
+      <View style={styles.mainContainer}>
+        <Text style={serviceItemStyle.title}>All done!</Text>
 
-      <View style={styles.lottiecontainer}>
-        <LottieView
-          autoPlay
-          loop={false}
-          ref={animation}
-          style={{
-            width: "100%",
-            height: "100%",
-            // backgroundColor: "red",
-          }}
-          source={animationData}
-        />
-      </View>
-      <View style={styles.infocontainer}>
-        <Text style={serviceItemStyle.title}>Redirecting back to list ...</Text>
+        <View style={styles.lottiecontainer}>
+          <LottieView
+              autoPlay
+              loop={false}
+              ref={animation}
+              style={{
+                width: 200,
+                height: 200,
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              source={animationData}
+          />
+
+        </View>
+        <View style={styles.infocontainer}>
+          <Text style={serviceItemStyle.title}>Redirecting back to list ...</Text>
+        </View>
       </View>
     </ScrollView>
   );
 }
 
 export const styles = StyleSheet.create({
-  infocontainer: {
-    borderWidth: 1,
-    borderColor: "red",
-    marginTop: 300,
+  mainContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#faa",
+    height: "100%",
+    width: "100%"
   },
-  lottiecontainer: {
+  infocontainer: {
     // borderWidth: 1,
     // borderColor: "red",
+  },
+  lottiecontainer: {
     justifyContent: "center",
     alignItems: "center",
     margin: 0,
     padding: 0,
+    flex: 1,
   },
   container: {
     padding: 20,
     backgroundColor: "#fff",
-    borderColor: "red",
-    borderWidth: 1,
   },
   logo: {
     width: 100,

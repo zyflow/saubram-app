@@ -55,22 +55,23 @@ export function Footer({ navigation, route, stepValues = {} }) {
         </Button>
       </View>
 
-      <View>
-        <Button
-          contentStyle={styles.button}
-          mode="contained"
-          onPress={() => home()}
-        >
-          <Text>Home</Text>
-        </Button>
-      </View>
+      {/*<View>*/}
+      {/*  <Button*/}
+      {/*    contentStyle={styles.button}*/}
+      {/*    mode="contained"*/}
+      {/*    onPress={() => home()}*/}
+      {/*  >*/}
+      {/*    <Text>Home</Text>*/}
+      {/*  </Button>*/}
+      {/*</View>*/}
     </View>
   );
 }
 
 export const styles = StyleSheet.create({
   button: {
-    width: 220,
+    maxWidth: 220,
+    width: 100,
     backgroundColor: "#2669ba",
     borderRadius: 5,
     height: 50,

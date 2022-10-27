@@ -22,7 +22,7 @@ export const InputSingleRadioButton = ({
   }, [currSelected]);
 
   return (
-    <TouchableWithoutFeedback onPress={() => setChecked(!checked)}>
+    <TouchableWithoutFeedback onPress={() => doSelect()}>
       <View style={styles.block}>
         <View style={styles.titleBlock}>
           <Text style={styles.title}>

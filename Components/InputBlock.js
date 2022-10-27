@@ -48,7 +48,7 @@ export const InputBlock = ({
       ) : null}
       <TextInput
         numeric
-        keyboardType={"numeric"}
+        keyboardType={numeric ? "numeric" : 'text'}
         style={styles.input}
         value={text}
         placeholder={placeholder ? placeholder : ""}

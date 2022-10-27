@@ -14,8 +14,6 @@ export function PictureBlockContainer({ route, navigation, items }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text>Picture block container</Text>
-
       <PictureBlock navigation={navigation} setPictureUrl={setPictureUrl} />
       <Footer navigation={navigation} route={route} />
     </ScrollView>

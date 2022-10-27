@@ -4,6 +4,7 @@ const url =
   process.env.REACT_APP_URL ??
   "https://mysterious-brushlands-71958.herokuapp.com";
 
+console.log('url', process.env.REACT_APP_URL)
 export function postData(data) {
   console.log("data service", url);
   const config = {

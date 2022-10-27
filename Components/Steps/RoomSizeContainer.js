@@ -29,7 +29,5 @@ export const styles = StyleSheet.create({
   container: {
     padding: 20,
     backgroundColor: "#fff",
-    borderColor: "red",
-    borderWidth: 1,
   },
 });

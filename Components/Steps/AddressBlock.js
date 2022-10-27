@@ -79,6 +79,7 @@ export function AddressBlock({
         icon={"search1"}
         placeholder={"Meklēt vietu vai adresi"}
         setInputValue={updateAddress}
+        numeric={false}
       />
       <View style={styles.iconBlockContainer}>
         <View style={styles.iconBlock}>
