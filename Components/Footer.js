@@ -61,7 +61,7 @@ export function Footer({ navigation, route, stepValues = {} }) {
       {/*    mode="contained"*/}
       {/*    onPress={() => home()}*/}
       {/*  >*/}
-      {/*    <Text>Home</Text>*/}
+      {/*    <Text>ServiceListContainer</Text>*/}
       {/*  </Button>*/}
       {/*</View>*/}
     </View>

@@ -1,7 +1,6 @@
-import {View, Text, Image, TextInput, StyleSheet} from "react-native";
+import {View, Text, Image, StyleSheet} from "react-native";
 import React, {useState} from "react";
-import {styles} from "../css/styles";
-import {Animated, TouchableWithoutFeedback} from "react-native";
+import { TouchableWithoutFeedback} from "react-native";
 
 export const ServiceItem = ({image, text, onClick}) => {
 
