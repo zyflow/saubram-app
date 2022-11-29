@@ -9,7 +9,7 @@ export function SuccessContainer({ route, navigation, items }) {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate("ServiceList", {});
+      navigation.navigate("Home", {});
     }, 3000);
   }, []);
 

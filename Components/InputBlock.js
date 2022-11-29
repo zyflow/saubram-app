@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -8,9 +8,20 @@ export const InputBlock = ({
   icon = null,
   placeholder = null,
   numeric = false,
+    elem =false,
 }) => {
   const [text, setText] = useState();
   // setInputValue(333);
+
+  useEffect(() => {
+    const stuff = () => {
+      setText(30)
+      console.log('doing')
+      updateFields(30)
+    }
+
+    stuff()
+  }, [])
 
   const updateFields = (e) => {
     if (numeric) {
@@ -46,7 +57,7 @@ export const InputBlock = ({
           </Text>
         </View>
       ) : null}
-      <TextInput
+      {elem ? elem : <TextInput
         numeric
         keyboardType={numeric ? "numeric" : 'text'}
         style={styles.input}
@@ -54,7 +65,7 @@ export const InputBlock = ({
         placeholder={placeholder ? placeholder : ""}
         // onChange={(e) => updateFields(e)}
         onChangeText={(e) => updateFields(e)}
-      />
+      />}
       {position === "end" ? (
         <View style={styles.endPartBlock}>
           <Text style={styles.endPart}>m2</Text>

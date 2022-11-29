@@ -19,7 +19,7 @@ export const CategoryListBlock = ({ navigation }) => {
     }
 
     const itemsComponent = items.map(item => {
-        return <TouchableWithoutFeedback onPress={onClick}>
+        return <TouchableWithoutFeedback key={item.name} onPress={onClick}>
             <View style={serviceItemStyle.itemBlock} >
                 <View style={serviceItemStyle.itemContainer} >
                     <Image style={serviceItemStyle.logo} source={{uri: item.image}} />

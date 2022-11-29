@@ -15,6 +15,7 @@ import {StepInfoContext} from "./Contexts/StepInfoProvider";
 import {SuccessContainer} from "./Components/Steps/SuccessContainer";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {Home} from "./Components/Home";
+import {CartContainer} from "./Components/Steps/CartContainer";
 
 function App() {
   const Stack = createNativeStackNavigator();
@@ -65,14 +66,28 @@ function App() {
     }
   }
 
+  const startPageOptions = (navigation, title) => {
+    return {
+      headerTitle: (props) => <Text>{title}</Text>,
+      headerRight: () => (
+          <Text onPress={() => navigation.navigate("Cart", {})}>
+            <Ionicons name="home" size={24} color="black"/> Cart
+          </Text>
+      ),
+      title: title,
+    }
+  }
+
   return (
       <PaperProvider>
         <StepInfoContext.Provider value={contextValue}>
           <NavigationContainer>
             <Stack.Navigator initialRouteName="ServiceListContainer">
-              <Stack.Screen name="Home" component={Home} options={({route}) => {
-                return {title: "Start page"};
-              }}/>
+              <Stack.Screen name="Home"
+                            component={Home}
+                            options={({navigation, route}) => startPageOptions(navigation, 'Start page')}
+                  // screenOptions={header}
+              />
 
               <Stack.Screen name="ServiceList" component={ServiceListContainer} options={({route}) => {
                 return {title: "Service list"};
@@ -111,6 +126,13 @@ function App() {
                   component={SuccessContainer}
                   options={({navigation, route}) => options(navigation, 'Success')}
 
+              />
+
+
+              <Stack.Screen
+                  name="Cart"
+                  component={CartContainer}
+                  options={({navigation, route}) => options(navigation, 'Cart')}
               />
             </Stack.Navigator>
           </NavigationContainer>

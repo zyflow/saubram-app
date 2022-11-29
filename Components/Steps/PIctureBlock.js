@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  TouchableWithoutFeedback,
+  TouchableWithoutFeedback, Image,
 } from "react-native";
 import { Camera } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
@@ -17,6 +17,7 @@ import { StepInfoContext } from "../../Contexts/StepInfoProvider";
 export function PictureBlock({ navigation, setPictureUrl }) {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [test, setTest] = useState("teszt");
+  const [image, setImage] = useState("");
   // const [pickedImagePath, setPickedImagePath] = useState("");
   const { setSteps, steps, currentStep } = useContext(StepInfoContext);
 
@@ -37,9 +38,22 @@ export function PictureBlock({ navigation, setPictureUrl }) {
     return <View />;
   }
 
-  // This function is triggered when the "Select an image" button pressed
+  const urlToBlob = (url) => {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onerror = reject;
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          resolve(xhr.response);
+        }
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob'; // convert type
+      xhr.send();
+    })
+  }
+
   const showImagePicker = async () => {
-    // Ask the user for the permission to access the media library
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -48,14 +62,17 @@ export function PictureBlock({ navigation, setPictureUrl }) {
       return;
     }
 
-    const result = await ImagePicker.launchImageLibraryAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
-    // Explore the result
-    console.log(result);
+    setImage(result.uri)
 
     if (!result.cancelled) {
       setPictureUrl(result.uri);
-      console.log(result.uri);
     }
   };
 
@@ -96,6 +113,8 @@ export function PictureBlock({ navigation, setPictureUrl }) {
       <Text style={styles.title}>Pievieno bildes pasūtījumam</Text>
 
       <View style={styles.buttonBlock}>
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+
         <TouchableWithoutFeedback onPress={() => showImagePicker()}>
           <View style={styles.block}>
             <AntDesign name="upload" size={24} color="black" />
@@ -114,6 +133,7 @@ export function PictureBlock({ navigation, setPictureUrl }) {
           placeholder={"Vai ir vēl kaut kas, kas mums būtu jāzina?"}
           numberOfLines={4}
         />
+
       </View>
     </ScrollView>
   );

@@ -5,7 +5,7 @@ import { InputStepCount } from "../InputStepCount";
 import { InputRadioGroup } from "../InputRadioGroup";
 import { StepInfoContext } from "../../Contexts/StepInfoProvider";
 
-export function RoomSize({ stepValues, setStepValues }) {
+export function RoomSize({ stepValues, setStepValues, setLocked }) {
   const [stepCountResult, setStepCountResult] = useState(0);
   const [inputValue, setInputValue] = useState(0);
   const pricePerm2 = 1;
@@ -40,7 +40,20 @@ export function RoomSize({ stepValues, setStepValues }) {
       },
       totalPrice: totalPrice,
     });
+
+    console.log('here input', typeof parseInt(inputValue), parseInt(inputValue) > 0)
+    if (parseInt(inputValue) > 0 ) {
+      setLocked(false)
+    } else {
+      setLocked(true)
+    }
+
   }, [inputValue, stepCountResult]);
+
+  // console.log('input val', inputValue)
+  // if (inputValue > 0 ) {
+  //   setLocked(false)
+  // }
 
   return (
     <ScrollView>

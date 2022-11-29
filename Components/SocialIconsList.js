@@ -23,21 +23,15 @@ export const SocialIconList = ({ navigation }) => {
 
     return (
         <View style={serviceItemStyle.body}>
-            <TouchableWithoutFeedback  onPress={() => goSocial('https://facebook.com')}>
+            <TouchableWithoutFeedback  onPress={() => goSocial('https://www.facebook.com/saubram')}>
                 <View style={serviceItemStyle.item}>
                     <AntDesign name="facebook-square" size={24} color="black" />
                     <Text style={serviceItemStyle.textStyle}>@saubram</Text>
                 </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback  onPress={() => goSocial('https://twitter.com')}>
+            <TouchableWithoutFeedback   onPress={() => goSocial('https://www.instagram.com/saubramlatvia')}>
                 <View style={serviceItemStyle.item}>
-                    <AntDesign name="twitter" size={24} color="black" />
-                    <Text style={serviceItemStyle.textStyle}>@saubram</Text>
-                </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback   onPress={() => goSocial('https://linkedin.com')}>
-                <View style={serviceItemStyle.item}>
-                    <AntDesign name="linkedin-square" size={24} color="black" />
+                    <AntDesign name="instagram" size={24} color="black" />
                     <Text style={serviceItemStyle.textStyle}>@saubram</Text>
                 </View>
             </TouchableWithoutFeedback>

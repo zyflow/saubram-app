@@ -6,8 +6,12 @@ import { Footer } from "../Footer";
 import { serviceItemStyle } from "../../css/ServiceItemStyle";
 
 export function RoomSizeContainer({ route, navigation, items }) {
-  const [stepValues, setStepValues] = useState({});
+  const [stepValues, setStepValues] = useState();
+  const [locked, setLocked] = useState(true);
 
+
+
+    console.log('step values', stepValues)
   return (
     <ScrollView style={styles.container}>
       <Text style={serviceItemStyle.title}>Room size container</Text>
@@ -15,11 +19,13 @@ export function RoomSizeContainer({ route, navigation, items }) {
         navigation={navigation}
         stepValues={stepValues}
         setStepValues={setStepValues}
+        setLocked={setLocked}
       />
       <Footer
         stepValues={{ roomValues: stepValues }}
         navigation={navigation}
         route={route}
+        locked={locked}
       />
     </ScrollView>
   );

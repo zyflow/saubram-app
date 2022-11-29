@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, StyleSheet, ScrollView } from "react-native";
+import { Text, StyleSheet, ScrollView, View } from "react-native";
 import { Footer } from "../Footer";
 import { AddressBlock } from "./AddressBlock";
 import { StepInfoContext } from "../../Contexts/StepInfoProvider";
-import { styles } from "../../css/styles";
 import * as Location from "expo-location";
 
 export function AddressBlockContainer({ route, navigation, items }) {
@@ -14,9 +13,10 @@ export function AddressBlockContainer({ route, navigation, items }) {
     latitude: 56.9354343,
     longitude: 24.1342781,
   });
-  // const [currentLocation, setCurernt] = useState(null);
+
   const { setSteps, steps, currentStep } = useContext(StepInfoContext);
 
+  console.log('address///', address)
   useEffect(() => {
     setSteps({
       ...steps,
@@ -43,28 +43,25 @@ export function AddressBlockContainer({ route, navigation, items }) {
     })();
   }, []);
 
-  // let currentLocation = ;
-  let text = "Waiting..";
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    // setCurrentLocation({
-    //   latitude: location.coords.latitude,
-    //   longitude: location.coords.longitude,
-    // });
-    // console.log("te..", location.coords.latitude, location.coords.longitude);
-    text = JSON.stringify(location);
-  }
-
   return (
-    <ScrollView style={styles.container}>
+    // <View style={styles.container}>
+    <View >
       <AddressBlock
-        navigation={navigation}
+        // navigation={navigation}
         setAddress={setAddress}
-        setCurrentLocation={setCurrentLocation}
+        // setCurrentLocation={setCurrentLocation}
         currentLocation={currentLocation}
       />
       <Footer navigation={navigation} route={route} />
-    </ScrollView>
+    </View>
   );
 }
+
+
+export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    padding: 10,
+    // height: "100%",
+  },
+});

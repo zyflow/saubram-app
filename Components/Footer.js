@@ -3,34 +3,38 @@ import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import { StepInfoContext } from "../Contexts/StepInfoProvider";
 import { postData } from "../Services/DataService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export function Footer({ navigation, route, stepValues = {} }) {
+
+export function Footer({ navigation, route, stepValues = {}, locked }) {
   const { setCurrentStep, serviceListData, steps } =
     useContext(StepInfoContext);
 
-  // console.log("steps", steps.totalPrice);
   let currentStep = "RoomSize";
   if (route.name) {
     currentStep = route.name.replace("Container", "");
   }
   const currentIndex = serviceListData.indexOf(currentStep);
-  const total = route.params.total ?? 0;
 
   const nextStep = async () => {
     const newStep = serviceListData[currentIndex + 1];
 
-    if (typeof newStep === "undefined" || typeof newStep === undefined) {
+    if (newStep === 'Success') {
+      const existingItem = await AsyncStorage.getItem('storage_Key')
+      let allSteps = [];
+      const parsedExistingItem = JSON.parse(existingItem);
+      if (parsedExistingItem && parsedExistingItem instanceof Array) {
+        allSteps = parsedExistingItem
+      }
+      allSteps.push(steps);
+      await AsyncStorage.setItem('storage_Key', JSON.stringify(allSteps))
       const resp = await postData(steps);
-    } else {
-      setCurrentStep(newStep);
-      navigation.navigate(newStep + "Container", {
-        itemId: 86,
-        currentStep,
-        nextStep: 2,
-        total: 123,
-        stepValues,
-      });
     }
+    setCurrentStep(newStep);
+    navigation.navigate(newStep + "Container", {
+      currentStep,
+      stepValues,
+    });
   };
 
   const home = () => {
@@ -45,25 +49,25 @@ export function Footer({ navigation, route, stepValues = {} }) {
       </View>
 
       <View>
-        <Button
-          contentStyle={styles.button}
-          style={styles.button}
-          mode="contained"
-          onPress={() => nextStep()}
-        >
-          <Text>Next</Text>
-        </Button>
+        {locked ?
+            <Button
+                contentStyle={styles.buttonLocked}
+                style={styles.button}
+                mode="contained"
+                onPress={() => console.log('locked...')}
+            >
+              <Text>Next</Text>
+            </Button> :
+            <Button
+                contentStyle={styles.button}
+                style={styles.button}
+                mode="contained"
+                onPress={() => nextStep()}
+            >
+              <Text>Next</Text>
+            </Button>
+        }
       </View>
-
-      {/*<View>*/}
-      {/*  <Button*/}
-      {/*    contentStyle={styles.button}*/}
-      {/*    mode="contained"*/}
-      {/*    onPress={() => home()}*/}
-      {/*  >*/}
-      {/*    <Text>ServiceListContainer</Text>*/}
-      {/*  </Button>*/}
-      {/*</View>*/}
     </View>
   );
 }
@@ -73,6 +77,15 @@ export const styles = StyleSheet.create({
     maxWidth: 220,
     width: 100,
     backgroundColor: "#2669ba",
+    borderRadius: 5,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonLocked: {
+    maxWidth: 220,
+    width: 100,
+    backgroundColor: "#c1c0c0",
     borderRadius: 5,
     height: 50,
     alignItems: "center",

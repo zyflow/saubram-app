@@ -12,7 +12,7 @@ export const Home = ({navigation}) => {
             <View style={styles.container}>
                 <HeaderImageBlock/>
                 <CategoryListBlock navigation={navigation}/>
-                <SpecialsBlock/>
+                <SpecialsBlock navigation={navigation}/>
                 <SocialIconList/>
             </View>
         </ScrollView>
