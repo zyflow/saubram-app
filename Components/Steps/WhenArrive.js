@@ -8,7 +8,7 @@ export function WhenArrive({ setDate, setTime }) {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Kad mums ierasties</Text>
       <HorizontalDatePicker setDate={setDate} />
-      <TimePicker setTime={setTime} />
+      {/*<TimePicker setTime={setTime} />*/}
     </ScrollView>
   );
 }

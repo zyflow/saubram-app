@@ -57,7 +57,6 @@ export const HorizontalDatePicker = ({ setDate }) => {
       >
         {dates}
       </ScrollView>
-      <Text>Selected: {selected}</Text>
     </View>
   );
 };

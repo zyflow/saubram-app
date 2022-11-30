@@ -52,7 +52,6 @@ export async function uploadToS3(url) {
                  */
             });
 
-        console.log('got magiks', uploadedImageUrl);
         return uploadedImageUrl;
     } catch (e) {
         console.log('ze err')
