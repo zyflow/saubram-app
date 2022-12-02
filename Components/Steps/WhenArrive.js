@@ -3,12 +3,14 @@ import { Text, StyleSheet, ScrollView } from "react-native";
 import { HorizontalDatePicker } from "../HorizontalDatePicker";
 import { TimePicker } from "../TimePicker";
 
-export function WhenArrive({ setDate, setTime }) {
+export function WhenArrive({ date, setDate, setTime }) {
+  const [isToday, setIsToday] = useState(false);
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Kad mums ierasties</Text>
-      <HorizontalDatePicker setDate={setDate} />
-      {/*<TimePicker setTime={setTime} />*/}
+      <HorizontalDatePicker setIsToday={setIsToday} setDate={setDate} />
+      <TimePicker isToday={isToday} setTime={setTime} />
     </ScrollView>
   );
 }

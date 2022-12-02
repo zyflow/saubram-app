@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import moment from "moment";
 
-export const TimePicker = ({ setTime }) => {
+export const TimePicker = ({ isToday, setTime }) => {
   const date = moment();
   let dates = [];
   const [selected, setSelected] = useState(8);
@@ -18,11 +18,18 @@ export const TimePicker = ({ setTime }) => {
     setTime(i);
   };
 
+  const isBlockedTime = (incomingTime) => {
+    const timeZone = 2;
+    const currentHour = 1;
+    const currentTime = new Date().getUTCHours() + timeZone + currentHour
+    return isToday && incomingTime < currentTime ? true : false;
+  }
+
   for (let i = 8; i < 18; i++) {
     dates.push(
-      <View key={i} style={styles.dateBlock}>
+      <View key={i} style={isBlockedTime(i) ?  styles.disabledBlock : styles.dateBlock }>
         <TouchableWithoutFeedback
-          onPress={(e) => toggle(e, i)}
+          onPress={(e) => isBlockedTime(i) ? console.log('skip') : toggle(e, i)}
           style={styles.center}
         >
           <View
@@ -32,7 +39,7 @@ export const TimePicker = ({ setTime }) => {
               i === selected ? styles.selected : "",
             ]}
           >
-            <Text>{i}:00</Text>
+            <Text>{isBlockedTime(i) ? 'T' : 'F'} {i}:00</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -41,6 +48,7 @@ export const TimePicker = ({ setTime }) => {
 
   return (
     <View style={styles.block}>
+      <Text>Today1: {isToday? 'T' : 'F'}</Text>
       <ScrollView
         style={styles.dateContainer}
         contentContainerStyle={styles.wrapper}
@@ -63,6 +71,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   dateContainer: {
     display: "flex",
     width: "100%",
@@ -79,6 +88,12 @@ export const styles = StyleSheet.create({
   dateBlock: {
     width: "90%",
     margin: 5,
+  },
+  disabledBlock: {
+    width: "90%",
+    margin: 5,
+    backgroundColor: "#d9d7d7",
+    opacity: 0.3
   },
   date: {
     padding: 7,

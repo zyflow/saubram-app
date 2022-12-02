@@ -23,7 +23,7 @@ export function WhenArriveContainer({ route, navigation, items }) {
   return (
     <ScrollView style={styles.container}>
       <Text>Room size container {date}</Text>
-      <WhenArrive setDate={setDate} setTime={setTime} />
+      <WhenArrive date={date} setDate={setDate} setTime={setTime} />
       <Footer
         stepValues={{ roomValues: stepValues }}
         navigation={navigation}

@@ -8,17 +8,24 @@ import {
 } from "react-native";
 import moment from "moment";
 
-export const HorizontalDatePicker = ({ setDate }) => {
+export const HorizontalDatePicker = ({ setIsToday, setDate }) => {
   const date = moment();
   let dates = [];
   const [selected, setSelected] = useState(8);
 
   const toggle = (e, i, currDate) => {
-    console.log("e target", currDate);
-    console.log("i", i);
     setSelected(i);
     setDate(currDate);
+    const currentDate = new Date(currDate);
+    const today = new Date();
+
+    if (currentDate.getUTCDate() === today.getUTCDate() && currentDate.getUTCMonth() == today.getUTCMonth()) {
+      setIsToday(true)
+    } else {
+      setIsToday(false)
+    }
   };
+
 
   for (let i = 0; i < 15; i++) {
     const currDate = moment().add(i, "days");
