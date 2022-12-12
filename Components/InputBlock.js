@@ -16,7 +16,6 @@ export const InputBlock = ({
   useEffect(() => {
     const stuff = () => {
       setText(30)
-      console.log('doing')
       updateFields(30)
     }
 

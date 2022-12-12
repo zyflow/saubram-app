@@ -36,8 +36,8 @@ export const SpecialsBlock = ({ navigation }) => {
         });
     }
 
-    const itemsComponent = items.map(item => {
-        return <TouchableWithoutFeedback onPress={() => moveToCat()}>
+    const itemsComponent = items.map((item, key) => {
+        return <TouchableWithoutFeedback onPress={() => moveToCat()} key={key}>
             <View key={item.name} style={serviceItemStyle.itemBlock}  >
                 <View style={serviceItemStyle.itemContainer} >
                     <Image style={serviceItemStyle.logo} source={{uri: item.image}} />

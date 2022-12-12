@@ -9,7 +9,7 @@ export const GoogleAutoCompleteInput = ({setCurrLoc, setCurrAddress, setAddress,
      * TODO extract to env.
      * @type {string}
      */
-    const apiKey = 'AIzaSyC70kUJgZSqFDsj0F9yyVTCiW0ufusTUb8'
+    const apiKey = process.env.GOOGLE_API_KEY
 
     const clear = () => {
         ref.current?.clear()

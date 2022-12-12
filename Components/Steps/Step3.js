@@ -12,8 +12,6 @@ export function Step3({ price, setPrice }) {
     setPrice(stepCountResult * 5 + price);
   };
 
-  console.log("doing stuff", stepCountResult, data);
-
   return (
     <ScrollView>
       <InputBlock />

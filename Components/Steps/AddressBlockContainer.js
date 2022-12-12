@@ -16,7 +16,6 @@ export function AddressBlockContainer({ route, navigation, items }) {
 
   const { setSteps, steps, currentStep } = useContext(StepInfoContext);
 
-  console.log('address///', address)
   useEffect(() => {
     setSteps({
       ...steps,

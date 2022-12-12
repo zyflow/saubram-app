@@ -41,7 +41,6 @@ export function RoomSize({ stepValues, setStepValues, setLocked }) {
       totalPrice: totalPrice,
     });
 
-    console.log('here input', typeof parseInt(inputValue), parseInt(inputValue) > 0)
     if (parseInt(inputValue) > 0 ) {
       setLocked(false)
     } else {

@@ -39,7 +39,7 @@ export const TimePicker = ({ isToday, setTime }) => {
               i === selected ? styles.selected : "",
             ]}
           >
-            <Text>{isBlockedTime(i) ? 'T' : 'F'} {i}:00</Text>
+            <Text>{i}:00</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -55,7 +55,6 @@ export const TimePicker = ({ isToday, setTime }) => {
       >
         {dates}
       </ScrollView>
-      <Text>Selected: {selected}</Text>
     </View>
   );
 };

@@ -6,13 +6,12 @@ export async function uploadToS3(url) {
         keyPrefix: "uploads/",
         bucket: "saubram-app",
         region: "eu-central-1",
-        accessKey: "AKIA6F3FWZJNYUL6WQQO",
-        secretKey: "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",
+        accessKey: process.env.AMAZON_KEY,
+        secretKey: process.env.AMAZON_SECRET,
         successActionStatus: 201
     }
 
     let fileExtension = url.substr(url.lastIndexOf('.') + 1);
-    console.log('ext', fileExtension)
     const file = {
         // uri can also be a file system path (i.e. file://)
         uri: url,
@@ -20,25 +19,16 @@ export async function uploadToS3(url) {
         type: "image/" + fileExtension
     }
 
-
-    console.log('file...', file)
-
     let uploadedImageUrl = null
     try {
         await RNS3.put(file, options)
             .progress((e) => console.log(e.loaded / e.total))
             .then(response => {
-                console.log('do i fucking get response?')
-                // console.log(response)
                 if (response.status !== 201) {
 
-                    console.log('err')
-                    console.log(response)
                     throw new Error("Failed to upload image to S3");
                 }
 
-                console.log('k...')
-                console.log(response.body);
                 uploadedImageUrl = response.body.postResponse.location
                 /**
                  * {
@@ -50,7 +40,9 @@ export async function uploadToS3(url) {
                  *   }
                  * }
                  */
-            });
+            }).catch(e => {
+                console.log('some problem', e)
+            })
 
         return uploadedImageUrl;
     } catch (e) {
@@ -59,7 +51,6 @@ export async function uploadToS3(url) {
     }
 
 
-    console.log('deed is done ..')
 
 
   return null;

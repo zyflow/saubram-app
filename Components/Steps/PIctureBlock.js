@@ -25,12 +25,10 @@ export function PictureBlock({ navigation, setPictureUrl }) {
     setTest("make picture");
 
     navigation.navigate("Camera");
-    console.log("make picture");
   };
 
   const addPicture = () => {
     setTest("add picture");
-    console.log("add picture");
   };
 
   if (!permission) {
@@ -88,11 +86,8 @@ export function PictureBlock({ navigation, setPictureUrl }) {
     const result = await ImagePicker.launchCameraAsync();
 
     // Explore the result
-    console.log(result);
-
     if (!result.cancelled) {
       setPictureUrl(result.uri);
-      console.log(result.uri);
     }
   };
 

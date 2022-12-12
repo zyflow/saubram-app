@@ -17,7 +17,6 @@ export const SocialIconList = ({ navigation }) => {
     ];
 
     const goSocial = (url) => {
-        console.log('go', url)
         Linking.openURL(url);
     }
 

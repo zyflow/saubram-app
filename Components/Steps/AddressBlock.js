@@ -7,7 +7,6 @@ import {
     SafeAreaView, Keyboard
 } from "react-native";
 import MapView, {Marker} from "react-native-maps";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import {StepInfoContext} from "../../Contexts/StepInfoProvider";
 import {GoogleAutoCompleteInput} from "../GoogleAutoCompleteInput";
 
@@ -16,7 +15,6 @@ export function AddressBlock({
                                  setAddress,
                                  currentLocation,
                              }) {
-    const {setSteps, steps, currentStep} = useContext(StepInfoContext);
     const [currLoc, setCurrLoc] = useState(currentLocation);
     const [currAddress, setCurrAddress] = useState("");
     const [keyboardStatus, setKeyboardStatus] = useState('hide');
@@ -65,21 +63,6 @@ export function AddressBlock({
                 <GoogleAutoCompleteInput setCurrLoc={setCurrLoc} setCurrAddress={setCurrAddress}
                                          setAddress={setAddress} keyboardStatus={keyboardStatus}/>
             </View>
-
-
-            {/*<View style={styles.iconBlockContainer}>*/}
-            {/*  <View style={styles.iconBlock}>*/}
-            {/*    <Ionicons name="navigate-outline" size={24} color="black" />*/}
-            {/*  </View>*/}
-            {/*  <View style={styles.iconBlockText}>*/}
-            {/*    <Text>Pašreizējā atrašanās vieta</Text>*/}
-            {/*    <Text>{currAddress}</Text>*/}
-            {/*    <Text>*/}
-            {/*      {currLoc.latitude} {currLoc.longitude}*/}
-            {/*    </Text>*/}
-            {/*  </View>*/}
-            {/*</View>*/}
-
 
         </View>
     );

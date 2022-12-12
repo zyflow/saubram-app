@@ -9,9 +9,6 @@ export function RoomSizeContainer({ route, navigation, items }) {
   const [stepValues, setStepValues] = useState();
   const [locked, setLocked] = useState(true);
 
-
-
-    console.log('step values', stepValues)
   return (
     <ScrollView style={styles.container}>
       <Text style={serviceItemStyle.title}>Room size container</Text>
